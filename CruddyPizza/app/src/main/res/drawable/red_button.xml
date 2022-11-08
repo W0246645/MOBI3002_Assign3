@@ -18,6 +18,11 @@
             android:pathData="M0 0V51H267V0"
             android:fillColor="#CB4141"
             />
+        <path
+            android:pathData="M15 0H252C260.284 0 267 6.71573 267 15V36C267 44.2843 260.284 51 252 51H15C6.71573 51 0 44.2843 0 36V15C0 6.71573 6.71573 0 15 0Z"
+            android:strokeWidth="2"
+            android:strokeColor="#000000"
+            />
 
     </group>
 
