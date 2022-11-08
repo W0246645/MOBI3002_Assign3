@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CruddyPizza</string>
+    <string name="main_title">Cruddy Pizza\nCurrent Orders</string>
+    <string name="new_order">New Order</string>
+    <string name="en_switch">EN</string>
+    <string name="fr_switch">FR</string>
 </resources>
