@@ -6,532 +6,476 @@
     android:layout_height="match_parent"
     tools:context=".NewOrder">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right">
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <Switch
-                android:id="@+id/sw_lang"
-                android:layout_width="80dp"
-                android:layout_height="32dp"
-                android:checked="true"
-                android:showText="true"
-                android:textOff="@string/fr_switch"
-                android:textOn="@string/en_switch" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/txt_createTitle2"
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/new_order"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-        </TableRow>
+                android:gravity="right">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="25dp"
-            android:background="@drawable/red_background_wshadow"
-            android:gravity="center">
+                <Switch
+                    android:id="@+id/sw_lang"
+                    android:layout_width="80dp"
+                    android:layout_height="32dp"
+                    android:checked="true"
+                    android:showText="true"
+                    android:textOff="@string/fr_switch"
+                    android:textOn="@string/en_switch" />
 
-            <RadioGroup
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_createSize"
+                    android:id="@+id/txt_createTitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/size"
+                    android:text="@string/new_order"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginVertical="25dp"
+                android:background="@drawable/red_background_wshadow"
+                android:gravity="center">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_createSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/size"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/btn_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:buttonTint="@color/white"
+                            android:text="@string/size_small"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/btn_large"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:buttonTint="@color/white"
+                            android:text="@string/size_lrg"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/btn_medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:buttonTint="@color/white"
+                            android:text="@string/size_med"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/btn_xlarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:buttonTint="@color/white"
+                            android:text="@string/size_xlrg"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </TableRow>
+
+                </RadioGroup>
+            </TableRow>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginVertical="25dp"
+                android:background="@drawable/red_background_tall"
+                android:elevation="4dp">
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
 
-                    <RadioButton
-                        android:id="@+id/btn_small"
+                    <TextView
+                        android:id="@+id/txt_createToppings"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:buttonTint="@color/white"
-                        android:text="@string/size_small"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/btn_large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:buttonTint="@color/white"
-                        android:text="@string/size_lrg"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:text="@string/toppings"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
 
-                    <RadioButton
-                        android:id="@+id/btn_medium"
-                        android:layout_width="match_parent"
+                    <CheckBox
+                        android:id="@+id/chk_topping1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/size_med"
+                        android:text="@string/topping_cheese"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
-                    <RadioButton
-                        android:id="@+id/btn_xlarge"
-                        android:layout_width="match_parent"
+                    <CheckBox
+                        android:id="@+id/chk_topping2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/size_xlrg"
+                        android:text="@string/topping_xcheese"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
+
                 </TableRow>
 
-            </RadioGroup>
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="25dp"
-            android:background="@drawable/red_background_tall"
-            android:elevation="4dp">
+                    <CheckBox
+                        android:id="@+id/chk_topping3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_pepperoni"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
-            <TableRow
+                    <CheckBox
+                        android:id="@+id/chk_topping4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_sausage"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_bacon"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_beef"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_chicken"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_donair"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_mushrooms"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_onions"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_peppers"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_jalapeno"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_olives"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_anchovies"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="100">
+
+                    <CheckBox
+                        android:id="@+id/chk_topping15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_broccoli"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_topping16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:buttonTint="@color/white"
+                        android:text="@string/topping_pineapple"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginVertical="25dp"
+                android:background="@drawable/red_background_tall"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txt_createToppings"
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/toppings"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
-            </TableRow>
+                    android:gravity="center">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
+                    <TextView
+                        android:id="@+id/txt_createCustInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cust_info"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
 
-                <CheckBox
-                    android:id="@+id/chk_topping1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_cheese"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                </TableRow>
 
-                <CheckBox
-                    android:id="@+id/chk_topping2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_xcheese"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center">
 
-            </TableRow>
+                    <EditText
+                        android:id="@+id/editTextFirstName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/edit_text"
+                        android:ems="10"
+                        android:hint="@string/first_name"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp" />
+                </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center">
 
-                <CheckBox
-                    android:id="@+id/chk_topping3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_pepperoni"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    <EditText
+                        android:id="@+id/editTextLastName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/edit_text"
+                        android:ems="10"
+                        android:hint="@string/last_name"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp" />
+                </TableRow>
 
-                <CheckBox
-                    android:id="@+id/chk_topping4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_sausage"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_bacon"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_beef"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_chicken"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping8"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_donair"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping9"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_mushrooms"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_onions"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_peppers"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_jalapeno"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_olives"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_anchovies"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:weightSum="100">
-
-                <CheckBox
-                    android:id="@+id/chk_topping15"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_broccoli"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <CheckBox
-                    android:id="@+id/chk_topping16"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:buttonTint="@color/white"
-                    android:text="@string/topping_pineapple"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="25dp"
-            android:background="@drawable/red_background_wshadow"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt_createOrderDateTime"
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/order_time"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center">
 
-            </TableRow>
+                    <EditText
+                        android:id="@+id/editTextAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/edit_text"
+                        android:ems="10"
+                        android:hint="@string/address"
+                        android:inputType="textPostalAddress"
+                        android:paddingLeft="5dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="15dp"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/editTextPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/edit_text"
+                        android:ems="10"
+                        android:hint="@string/phone"
+                        android:inputType="phone"
+                        android:paddingLeft="5dp" />
+                </TableRow>
+
+            </LinearLayout>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
+                android:layout_marginBottom="25dp"
                 android:gravity="center">
 
-                <EditText
-                    android:id="@+id/editTextDate"
+                <Button
+                    android:id="@+id/btn_submitOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:backgroundTint="@color/white"
-                    android:ems="10"
-                    android:hint="@string/date"
-                    android:inputType="date"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/black" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/editTextTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:backgroundTint="@color/white"
-                    android:ems="10"
-                    android:hint="@string/time"
-                    android:inputType="time"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/black" />
+                    android:background="@drawable/red_button"
+                    android:text="@string/new_order"
+                    app:backgroundTint="@null" />
             </TableRow>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="25dp"
-            android:background="@drawable/red_background_tall"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/txt_createCustInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cust_info"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="15dp"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/editTextFirstName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:ems="10"
-                    android:hint="@string/first_name"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="5dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="15dp"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/editTextLastName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:ems="10"
-                    android:hint="@string/last_name"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="5dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/editTextAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:ems="10"
-                    android:hint="@string/address"
-                    android:inputType="textPostalAddress"
-                    android:paddingLeft="5dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="15dp"
-                android:gravity="center">
-
-                <EditText
-                    android:id="@+id/editTextPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/edit_text"
-                    android:ems="10"
-                    android:hint="@string/phone"
-                    android:inputType="phone"
-                    android:paddingLeft="5dp" />
-            </TableRow>
-
-        </LinearLayout>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/btn_submitOrder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/red_button"
-                android:text="@string/new_order"
-                app:backgroundTint="@null" />
-        </TableRow>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
