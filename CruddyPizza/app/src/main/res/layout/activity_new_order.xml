@@ -76,6 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
                             android:buttonTint="@color/white"
+                            android:checked="true"
                             android:text="@string/size_small"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
@@ -120,6 +121,7 @@
             </TableRow>
 
             <TableLayout
+                android:id="@+id/toppingSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
@@ -154,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_cheese"
+                        android:text="@string/topping_1"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -164,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_xcheese"
+                        android:text="@string/topping_2"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -182,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_pepperoni"
+                        android:text="@string/topping_3"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -192,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_sausage"
+                        android:text="@string/topping_4"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -210,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_bacon"
+                        android:text="@string/topping_5"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -220,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_beef"
+                        android:text="@string/topping_6"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -238,7 +240,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_chicken"
+                        android:text="@string/topping_7"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -248,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_donair"
+                        android:text="@string/topping_8"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -266,7 +268,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_mushrooms"
+                        android:text="@string/topping_9"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -276,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_onions"
+                        android:text="@string/topping_10"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -294,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_peppers"
+                        android:text="@string/topping_11"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -304,7 +306,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_jalapeno"
+                        android:text="@string/topping_12"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -322,7 +324,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_olives"
+                        android:text="@string/topping_13"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -332,35 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
-                        android:text="@string/topping_anchovies"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:weightSum="100">
-
-                    <CheckBox
-                        android:id="@+id/chk_topping15"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:buttonTint="@color/white"
-                        android:text="@string/topping_broccoli"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-
-                    <CheckBox
-                        android:id="@+id/chk_topping16"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:buttonTint="@color/white"
-                        android:text="@string/topping_pineapple"
+                        android:text="@string/topping_14"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
