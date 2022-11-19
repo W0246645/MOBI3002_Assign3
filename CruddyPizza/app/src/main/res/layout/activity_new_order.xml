@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_createTitle2"
+                    android:id="@+id/txt_newTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/new_order"
@@ -379,7 +379,9 @@
                         android:ems="10"
                         android:hint="@string/first_name"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#838383" />
                 </TableRow>
 
                 <TableRow
@@ -396,7 +398,9 @@
                         android:ems="10"
                         android:hint="@string/last_name"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#838383" />
                 </TableRow>
 
                 <TableRow
@@ -413,7 +417,9 @@
                         android:ems="10"
                         android:hint="@string/address"
                         android:inputType="textPostalAddress"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#838383" />
                 </TableRow>
 
                 <TableRow
@@ -430,7 +436,9 @@
                         android:ems="10"
                         android:hint="@string/phone"
                         android:inputType="phone"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#838383" />
                 </TableRow>
 
             </LinearLayout>
@@ -447,6 +455,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/red_button"
                     android:text="@string/new_order"
+                    android:textColor="#FFFFFF"
                     app:backgroundTint="@null" />
             </TableRow>
         </LinearLayout>
