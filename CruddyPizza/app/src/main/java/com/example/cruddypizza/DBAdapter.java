@@ -23,25 +23,23 @@ public class DBAdapter {
     public static final String KEY_PHONE = "phone";
     public static final String KEY_DATETIME = "orderDateTime";
 
-    public static final String TAG = "DBAdapter";
-    private static final String DB_PATH = "/data/data/res/raw/cruddypizza.db";
-    private static final String DATABASE_NAME = "cruddypizza.db";
-    private static final String DATABASE_TABLE = "orders";
-    private static final int DATABASE_VERSION = 1;
+   public static final String TAG = "DBAdapter";
+//    private static final String DB_PATH = "/data/data" + getPackageName() + "assest/cruddypizza.db";
+    private static final String DATABASE_NAME = "db";
+    private static final String DATABASE_TABLE = "Orders";
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DATABASE_CREATE =
-            "create table orders(_id integer primary key autoincrement,"
-                    + "name text not null,phone text not null,address text not null,"
-                    + "date text not null,time text not null,size text not null,"
-                    + "bacon text not null,cheese text not null,ham text not null,pepperoni text not null,pineapple text not null,vegetable text not null);";
+            "create table orders(id integer primary key autoincrement,"
+                    + "size integer not null,topping1 integer,topping2 integer,topping3 integer,fName text not null,"
+                    + "lName text not null,address text not null,phone integer not null, orderDateTime text not null)";
+
 
     private final DatabaseHelper DBHelper;
     private SQLiteDatabase db;
-    private Context context;
 
     public DBAdapter(Context ctx) {
-        this.context = ctx;
-        DBHelper = new DatabaseHelper(context);
+        DBHelper = new DatabaseHelper(ctx);
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -61,11 +59,11 @@ public class DBAdapter {
 
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            return;
-//            Log.w(TAG, "Upgrade database from version " + oldVersion + " to "
-//                    + newVersion + ", which will destroy all old data");
-//            db.execSQL("DROP TABLE IF EXISTS contacts");
-//            onCreate(db);
+            Log.w(TAG, "Upgrade database from version " + oldVersion + " to "
+                    + newVersion + ", which will destroy all old data");
+            db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+            onCreate(db);
+
         }//end method onUpgrade
 
     }
@@ -109,7 +107,7 @@ public class DBAdapter {
     }
 
     //retrieve all orders
-    public Cursor getOrders()throws SQLException{
+    public Cursor getOrders() {
         Cursor cursor = db.query(true, DATABASE_TABLE, new String[]{KEY_ID,
                         KEY_SIZE, KEY_TOPPING1, KEY_TOPPING2, KEY_TOPPING3, KEY_FNAME, KEY_LNAME, KEY_ADDRESS,KEY_PHONE, KEY_DATETIME},
                 null, null, null, null, null,null, null);

@@ -65,12 +65,9 @@ public class MainActivity extends AppCompatActivity {
         changeLanguage(isEnglish);
 
         try {
-            dbPath = "/data/data/" + getPackageName() + "/database/cruddypizza.db";
+            dbPath = "/data/data/" + getPackageName() + "/assets/";
             File file = new File(dbPath);
-            if (!file.exists()) {
-                CopyDB(getBaseContext().getAssets().open("cruddypizza"), new FileOutputStream(dbPath));
-            }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
