@@ -156,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:buttonTint="@color/white"
+                        android:checked="true"
                         android:text="@string/topping_1"
                         android:textColor="@color/white"
                         android:textSize="12sp" />

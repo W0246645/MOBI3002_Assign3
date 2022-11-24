@@ -1,5 +1,6 @@
 package com.example.cruddypizza;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Order {
@@ -11,10 +12,12 @@ public class Order {
     public String fName;
     public String lName;
     public String address;
-    public int phone;
+    public String phone;
     public Date orderDateTime;
 
-    public Order(int size, String fName, String lName, String address, int phone) {
+    public Order(){}
+
+    public Order(int size, String fName, String lName, String address, String phone) {
         this.size = size;
         this.fName = fName;
         this.lName = lName;
@@ -22,7 +25,7 @@ public class Order {
         this.phone = phone;
     }
 
-    public Order(int size, int topping1, String fName, String lName, String address, int phone) {
+    public Order(int size, int topping1, String fName, String lName, String address, String phone) {
         this.size = size;
         this.topping1 = topping1;
         this.fName = fName;
@@ -31,7 +34,7 @@ public class Order {
         this.phone = phone;
     }
 
-    public Order(int size, int topping1, int topping2, String fName, String lName, String address, int phone) {
+    public Order(int size, int topping1, int topping2, String fName, String lName, String address, String phone) {
         this.size = size;
         this.topping1 = topping1;
         this.topping2 = topping2;
@@ -41,7 +44,7 @@ public class Order {
         this.phone = phone;
     }
 
-    public Order(int size, int topping1, int topping2, int topping3, String fName, String lName, String address, int phone) {
+    public Order(int size, int topping1, int topping2, int topping3, String fName, String lName, String address, String phone) {
         this.size = size;
         this.topping1 = topping1;
         this.topping2 = topping2;
@@ -116,11 +119,11 @@ public class Order {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

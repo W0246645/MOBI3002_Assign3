@@ -8,5 +8,4 @@
     android:layout_width="fill_parent"
     android:gravity="start"
     android:textAlignment="inherit"
-    android:layout_height="fill_parent"
-    android:paddingVertical="15dp"/>
+    android:layout_height="fill_parent"/>

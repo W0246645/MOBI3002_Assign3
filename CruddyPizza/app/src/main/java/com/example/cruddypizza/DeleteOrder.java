@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,8 @@ public class DeleteOrder extends AppCompatActivity {
     Switch swtch_lang;
     Button btn_yesDelete, btn_dontDelete;
     Intent intent;
+    Order order;
+    DBAdapter db;
     ArrayList<ArrayList<String>> table = new ArrayList<>();
     ArrayList<String> row = new ArrayList<>();
     ArrayList<String> listData = new ArrayList<>();
@@ -45,30 +48,39 @@ public class DeleteOrder extends AppCompatActivity {
         btn_dontDelete.setOnClickListener(onNoClicked);
         swtch_lang.setOnClickListener(onLanguageClicked);
 
-        table = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("table");
-        row = (ArrayList<String>) intent.getSerializableExtra("row");
         id = intent.getLongExtra("id", 0);
 
         prefs = getSharedPreferences("settings", MODE_PRIVATE);
         isEnglish = prefs.getBoolean(IS_ENGLISH_KEY, true);
         swtch_lang.setChecked(isEnglish);
+
+        db = new DBAdapter(this);
+        db.open();
+        order = db.getOrder(id);
+        db.close();
+
         changeLanguage(isEnglish);
-
-        adapter = new ArrayAdapter<>(this, R.layout.custom_textview, listData);
-        orderDetails.setAdapter(adapter);
-
-        for (String item: row) {
-            listData.add(item);
-        }
-        adapter.notifyDataSetChanged();
     }
 
     public View.OnClickListener onYesClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            table.remove((int) id);
+            db.open();
+            if (db.deleteOrder(order)){
+                if (isEnglish) {
+                    Toast.makeText(getApplicationContext(), "Successfully Deleted Order!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Commande supprimée avec succès!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                if (isEnglish) {
+                    Toast.makeText(getApplicationContext(), "Order Not Deleted, Something Went Wrong!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Commande non supprimée, quelque chose s'est mal passé!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            db.close();
             Intent i = new Intent(DeleteOrder.this, MainActivity.class);
-            i.putExtra("table", table);
             startActivity(i);
         }
     };
@@ -77,8 +89,6 @@ public class DeleteOrder extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(DeleteOrder.this, OrderDetails.class);
-            i.putExtra("table", table);
-            i.putExtra("row", row);
             i.putExtra("id", id);
             startActivity(i);
         }
@@ -106,5 +116,23 @@ public class DeleteOrder extends AppCompatActivity {
         ((TextView) findViewById(R.id.txt_deleteTitle)).setText(stringsArray[37]);
         ((Button) findViewById(R.id.btn_yesDelete)).setText(stringsArray[38]);
         ((Button) findViewById(R.id.btn_dontDelete)).setText(stringsArray[39]);
+
+        //Populate the ListView inside this method so I can easily change the language. Somewhat last minute fix.
+        ArrayList<String> listData = new ArrayList<>();
+
+        listData.add(stringsArray[42] + ": " + order.id);
+        listData.add(stringsArray[5] + ": " + order.size);
+        listData.add(stringsArray[10] + ": " + order.topping1);
+        listData.add(stringsArray[25] + ": ");
+        listData.add(order.orderDateTime.toString());
+        listData.add(stringsArray[43] + ": ");
+        listData.add(order.fName + " " + order.lName);
+        listData.add(stringsArray[44] + ": ");
+        listData.add(order.address);
+        listData.add(stringsArray[45] + ": ");
+        listData.add(order.phone);
+
+        adapter = new ArrayAdapter<>(this, R.layout.custom_textview, listData);
+        orderDetails.setAdapter(adapter);
     }
 }

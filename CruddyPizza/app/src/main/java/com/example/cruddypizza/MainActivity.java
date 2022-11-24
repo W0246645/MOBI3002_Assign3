@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.android.material.textview.MaterialTextView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Button btn_newOrder;
     Switch swtch_lang;
     TextView txt_success;
-    Intent intent;
     ArrayList<ArrayList<String>> table = new ArrayList<>();
     ArrayList<String> row = new ArrayList<>();
     ArrayAdapter<String> adapter;
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences prefs;
     Boolean isEnglish;
     static final String IS_ENGLISH_KEY = "isEnglish";
-    int itemLayout;
-    String dbPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         swtch_lang = findViewById(R.id.sw_lang);
         orderList = findViewById(R.id.orderList);
         orderList.setOnItemClickListener(this::onItemClicked);
+
+
+
         adapter = new ArrayAdapter<>(this, R.layout.custom_textview, listData);
         orderList.setAdapter(adapter);
 
@@ -64,33 +66,16 @@ public class MainActivity extends AppCompatActivity {
         swtch_lang.setChecked(isEnglish);
         changeLanguage(isEnglish);
 
-        try {
-            dbPath = "/data/data/" + getPackageName() + "/assets/";
-            File file = new File(dbPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         DBAdapter db = new DBAdapter(this);
 
         db.open();
         Cursor cursor = db.getOrders();
-        db.close();
-
-        intent = getIntent();
-        if (intent != null) {
-            table = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("table");
-            int orderNum = 0;
-            if (table != null) {
-                for (ArrayList<String> order : table) {
-                    String orderDetails = order.get(0) + " " + order.get(1);
-                    listData.add(orderDetails);
-                }
-                adapter.notifyDataSetChanged();
-            } else {
-                table = new ArrayList<>();
-            }
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            String orderDetails = cursor.getString(cursor.getColumnIndex("id")) + ". " + cursor.getString(cursor.getColumnIndex("fName")) + " " + cursor.getString(cursor.getColumnIndex("lName"));
+            listData.add(orderDetails);
         }
+        db.close();
+        adapter.notifyDataSetChanged();
     }
 
     protected void onResume() {
@@ -110,10 +95,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void onItemClicked(AdapterView<?> l, View v, int position, long id) {
+        id = Long.parseLong(((MaterialTextView) v).getText().toString().split("\\.")[0]);
         Intent i = new Intent(MainActivity.this, OrderDetails.class);
-        row = table.get(position);
-        i.putExtra("table", table);
-        i.putExtra("row", row);
         i.putExtra("id", id);
         startActivity(i);
     };

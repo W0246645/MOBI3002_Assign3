@@ -1,6 +1,6 @@
 <resources>
     <string-array name="english">
-        <item name="app_name">CruddyPizza</item>
+        <item name="app_name">Cruddy Pizza</item>
         <item name="main_title">Cruddy Pizza\nCurrent Orders</item>
         <item name="new_order">New Order</item>
         <item name="en_switch">EN</item>
@@ -42,9 +42,13 @@
         <item name="no_delete">No, Don\'t Delete</item>
         <item name="edit_title">Edit Order</item>
         <item name="update">Update Order</item>
+        <item name="orderNo">Order #</item>
+        <item name="cust_name">Customer Name</item>
+        <item name="cust_address">Customer Address</item>
+        <item name="cust_phone">Customer Phone Number</item>
     </string-array>
     <string-array name="french">
-        <item name="app_name">CruddyPizza</item>
+        <item name="app_name">Cruddy Pizza</item>
         <item name="main_title">Cruddy Pizza\nCommandes en cours</item>
         <item name="new_order">Nouvelle commande</item>
         <item name="en_switch">EN</item>
@@ -86,6 +90,10 @@
         <item name="no_delete">Non, ne supprimez pas</item>
         <item name="edit_title">Modifier la commande</item>
         <item name="update">Mise à jour de la commande</item>
+        <item name="orderNo">Commande #</item>
+        <item name="cust_name">Nom du client</item>
+        <item name="cust_address">Adresse du client</item>
+        <item name="cust_phone">Numéro de téléphone du client</item>
     </string-array>
     <string name="app_name">CruddyPizza</string>
     <string name="main_title">Cruddy Pizza\nCurrent Orders</string>

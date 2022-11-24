@@ -17,11 +17,10 @@ import java.util.ArrayList;
 public class OrderDetails extends AppCompatActivity {
     long id;
     Switch swtch_lang;
+    String[] stringsArray;
     Button btn_edit, btn_delete, btn_back;
     Intent intent;
-    ArrayList<ArrayList<String>> table = new ArrayList<>();
-    ArrayList<String> row = new ArrayList<>();
-    ArrayList<String> listData = new ArrayList<>();
+    Order order;
     ListView orderDetails;
     ArrayAdapter<String> adapter;
     SharedPreferences prefs;
@@ -47,30 +46,24 @@ public class OrderDetails extends AppCompatActivity {
         btn_back.setOnClickListener(onBackClicked);
         swtch_lang.setOnClickListener(onLanguageClicked);
 
-        table = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("table");
-        row = (ArrayList<String>) intent.getSerializableExtra("row");
         id = intent.getLongExtra("id", 0);
 
         prefs = getSharedPreferences("settings", MODE_PRIVATE);
         isEnglish = prefs.getBoolean(IS_ENGLISH_KEY, true);
         swtch_lang.setChecked(isEnglish);
+
+        DBAdapter db = new DBAdapter(this);
+        db.open();
+        order = db.getOrder(id);
+        db.close();
+
         changeLanguage(isEnglish);
-
-        adapter = new ArrayAdapter<>(this, R.layout.custom_textview, listData);
-        orderDetails.setAdapter(adapter);
-
-        for (String item: row) {
-            listData.add(item);
-        }
-        adapter.notifyDataSetChanged();
     }
 
     public View.OnClickListener onEditClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(OrderDetails.this, EditOrder.class);
-            i.putExtra("table", table);
-            i.putExtra("row", row);
             i.putExtra("id", id);
             startActivity(i);
         }
@@ -80,8 +73,6 @@ public class OrderDetails extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(OrderDetails.this, DeleteOrder.class);
-            i.putExtra("table", table);
-            i.putExtra("row", row);
             i.putExtra("id", id);
             startActivity(i);
         }
@@ -91,7 +82,6 @@ public class OrderDetails extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(OrderDetails.this, MainActivity.class);
-            i.putExtra("table", table);
             startActivity(i);
         }
     };
@@ -109,7 +99,6 @@ public class OrderDetails extends AppCompatActivity {
     };
 
     public void changeLanguage(Boolean isEnglish) {
-        String[] stringsArray;
         if (isEnglish) {
             stringsArray = getResources().getStringArray(R.array.english);
         } else {
@@ -119,5 +108,23 @@ public class OrderDetails extends AppCompatActivity {
         ((Button) findViewById(R.id.btn_editOrder)).setText(stringsArray[34]);
         ((Button) findViewById(R.id.btn_deleteOrder)).setText(stringsArray[35]);
         ((Button) findViewById(R.id.btn_back)).setText(stringsArray[36]);
+
+        //Populate the ListView inside this method so I can easily change the language. Somewhat last minute fix.
+        ArrayList<String> listData = new ArrayList<>();
+
+        listData.add(stringsArray[42] + ": " + order.id);
+        listData.add(stringsArray[5] + ": " + order.size);
+        listData.add(stringsArray[10] + ": " + order.topping1);
+        listData.add(stringsArray[25] + ": ");
+        listData.add(order.orderDateTime.toString());
+        listData.add(stringsArray[43] + ": ");
+        listData.add(order.fName + " " + order.lName);
+        listData.add(stringsArray[44] + ": ");
+        listData.add(order.address);
+        listData.add(stringsArray[45] + ": ");
+        listData.add(order.phone);
+
+        adapter = new ArrayAdapter<>(this, R.layout.custom_textview_details, listData);
+        orderDetails.setAdapter(adapter);
     }
 }

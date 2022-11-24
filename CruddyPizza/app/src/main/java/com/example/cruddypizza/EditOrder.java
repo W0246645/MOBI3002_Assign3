@@ -17,11 +17,13 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class EditOrder extends AppCompatActivity {
     int size = 0, numToppings = 0;
+    long id;
     Switch swtch_lang;
     RadioButton btn_small, btn_med, btn_lrg, btn_xlrg;
     CheckBox chk_topping1, chk_topping2, chk_topping3, chk_topping4, chk_topping5, chk_topping6, chk_topping7, chk_topping8, chk_topping9, chk_topping10, chk_topping11, chk_topping12, chk_topping13, chk_topping14;
@@ -32,11 +34,11 @@ public class EditOrder extends AppCompatActivity {
     Boolean isEnglish;
     static final String IS_ENGLISH_KEY = "isEnglish";
     Intent intent;
-    ArrayList<String> order = new ArrayList<>();
-
-    ArrayList<ArrayList<String>> table = new ArrayList<>();
+    DBAdapter db;
+    Order order;
     ArrayList<CheckBox> toppings = new ArrayList<>();
     Animation shake;
+    ArrayList<Integer> dbToppings = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,6 @@ public class EditOrder extends AppCompatActivity {
         chk_topping14 = findViewById(R.id.chk_topping14);
         toppings.add(chk_topping14);
 
-
         editText_firstName = findViewById(R.id.editTextFirstName);
         editText_lastName = findViewById(R.id.editTextLastName);
         editText_address = findViewById(R.id.editTextAddress);
@@ -94,25 +95,56 @@ public class EditOrder extends AppCompatActivity {
         btn_lrg.setOnClickListener(onSizeButtonClicked);
         btn_xlrg.setOnClickListener(onSizeButtonClicked);
         swtch_lang.setOnClickListener(onLanguageClicked);
+        btn_submit.setOnClickListener(onSubmitClicked);
+
+        for (CheckBox topping: toppings) {
+            topping.setOnClickListener(onToppingClicked);
+        }
 
         prefs = getSharedPreferences("settings", MODE_PRIVATE);
         isEnglish = prefs.getBoolean(IS_ENGLISH_KEY, true);
         swtch_lang.setChecked(isEnglish);
         changeLanguage(isEnglish);
 
-//        for (CheckBox topping: toppings) {
-//            topping.setOnClickListener(onToppingClicked);
-//        }
-//
-//        btn_submit.setOnClickListener(onNewClicked);
-
         intent = getIntent();
-        if (intent != null) {
-            table = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("table");
-            if (table == null) {
-                table = new ArrayList<>();
+        id = intent.getLongExtra("id", 0);
+
+        db = new DBAdapter(this);
+        db.open();
+        order = db.getOrder(id);
+        db.close();
+
+        switch (order.size) {
+            case (1):
+                btn_small.setChecked(true);
+                break;
+            case (2):
+                btn_med.setChecked(true);
+                break;
+            case (3):
+                btn_lrg.setChecked(true);
+                break;
+            case (4):
+                btn_xlrg.setChecked(true);
+                break;
+        }
+
+        dbToppings.add(order.topping1);
+        dbToppings.add(order.topping2);
+        dbToppings.add(order.topping3);
+
+        for (int i = 0; i < toppings.size(); i++) {
+            if (dbToppings.contains(i + 1)) {
+                toppings.get(i).setChecked(true);
+                numToppings += 1;
             }
         }
+
+        editText_firstName.setText(order.fName);
+        editText_lastName.setText(order.lName);
+        editText_address.setText(order.address);
+        editText_phone.setText(order.phone);
+
     }
 
     public View.OnClickListener onSizeButtonClicked = new View.OnClickListener() {
@@ -124,6 +156,96 @@ public class EditOrder extends AppCompatActivity {
             btn_xlrg.setChecked(false);
             ((RadioButton) view).setChecked(true);
 
+        }
+    };
+
+    public View.OnClickListener onToppingClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (numToppings < 3 && ((CheckBox) view).isChecked()) {
+                numToppings += 1;
+            } else if (!((CheckBox) view).isChecked()) {
+                numToppings -=1;
+            } else {
+                view.startAnimation(shake);
+                ((CheckBox) view).setChecked(false);
+            }
+        }
+    };
+
+    public View.OnClickListener onSubmitClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            boolean isGood = true;
+            if (editText_firstName.getText().toString().length() == 0) {
+                editText_firstName.startAnimation(shake);
+                isGood = false;
+            }
+            if (editText_lastName.getText().toString().length() == 0) {
+                editText_lastName.startAnimation(shake);
+                isGood = false;
+            }
+            if (editText_address.getText().toString().length() == 0) {
+                editText_address.startAnimation(shake);
+                isGood = false;
+            }
+            if (editText_phone.getText().toString().length() == 0) {
+                editText_phone.startAnimation(shake);
+                isGood = false;
+            }
+            if (btn_small.isChecked()) {
+                size = 1;
+            } else if (btn_med.isChecked()) {
+                size = 2;
+            } else if (btn_lrg.isChecked()) {
+                size = 3;
+            } else if (btn_xlrg.isChecked()) {
+                size = 4;
+            }
+            if (isGood) {
+                order.size = size;
+                order.topping1 = 0;
+                int totalToppings = 0;
+                for (CheckBox topping: toppings) {
+                    if (topping.isChecked()) {
+                        totalToppings += 1;
+                        switch (totalToppings) {
+                            case (1):
+                                order.topping1 = toppings.indexOf(topping) + 1;
+                                break;
+                            case (2):
+                                order.topping2 = toppings.indexOf(topping) + 1;
+                                break;
+                            case (3):
+                                order.topping3 = toppings.indexOf(topping) + 1;
+                                break;
+                        }
+
+                    }
+                }
+                order.fName = editText_firstName.getText().toString();
+                order.lName = editText_lastName.getText().toString();
+                order.address = editText_address.getText().toString();
+                order.phone = editText_phone.getText().toString();
+
+                db.open();
+                if (db.updateOrder(order)){
+                    if (isEnglish) {
+                        Toast.makeText(getApplicationContext(), "Successfully Updated Order!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Commande mise à jour avec succès!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (isEnglish) {
+                        Toast.makeText(getApplicationContext(), "Order Not Updated, Something Went Wrong!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Commande non mise à jour, quelque chose s'est mal passé!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                db.close();
+                Intent i = new Intent(EditOrder.this, MainActivity.class);
+                startActivity(i);
+            }
         }
     };
 
@@ -147,7 +269,7 @@ public class EditOrder extends AppCompatActivity {
             stringsArray = getResources().getStringArray(R.array.french);
         }
         ((TextView) findViewById(R.id.txt_editTitle)).setText(stringsArray[34]);
-        ((Button) findViewById(R.id.btn_editOrder)).setText(stringsArray[41]);
+        ((Button) findViewById(R.id.btn_submitEdit)).setText(stringsArray[41]);
         ((TextView) findViewById(R.id.txt_createSize)).setText(stringsArray[5]);
         ((RadioButton) findViewById(R.id.btn_small)).setText(stringsArray[6]);
         ((RadioButton) findViewById(R.id.btn_medium)).setText(stringsArray[7]);

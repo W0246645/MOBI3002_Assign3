@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,8 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NewOrder extends AppCompatActivity {
-    int size = 0, numToppings = 0;
-    long id;
+    int size = 0, numToppings = 1;
     Switch swtch_lang;
     RadioButton btn_small, btn_med, btn_lrg, btn_xlrg;
     CheckBox chk_topping1, chk_topping2, chk_topping3, chk_topping4, chk_topping5, chk_topping6, chk_topping7, chk_topping8, chk_topping9, chk_topping10, chk_topping11, chk_topping12, chk_topping13, chk_topping14;
@@ -33,10 +33,7 @@ public class NewOrder extends AppCompatActivity {
     SharedPreferences prefs;
     Boolean isEnglish;
     static final String IS_ENGLISH_KEY = "isEnglish";
-    Intent intent;
-    ArrayList<String> row = new ArrayList<>();
-    ArrayList<String> order = new ArrayList<>();
-
+    DBAdapter db;
     ArrayList<ArrayList<String>> table = new ArrayList<>();
     ArrayList<CheckBox> toppings = new ArrayList<>();
     Animation shake;
@@ -108,12 +105,7 @@ public class NewOrder extends AppCompatActivity {
 
         btn_submit.setOnClickListener(onNewClicked);
 
-        intent = getIntent();
-        table = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("table");
-        row = (ArrayList<String>) intent.getSerializableExtra("row");
-        id = intent.getLongExtra("id", 0);
-
-
+        db = new DBAdapter(this);
     }
 
     public View.OnClickListener onSizeButtonClicked = new View.OnClickListener() {
@@ -146,10 +138,6 @@ public class NewOrder extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             boolean isGood = true;
-            if (numToppings == 0) {
-                toppingSection.startAnimation(shake);
-                isGood = false;
-            }
             if (editText_firstName.getText().toString().length() == 0) {
                 editText_firstName.startAnimation(shake);
                 isGood = false;
@@ -176,19 +164,35 @@ public class NewOrder extends AppCompatActivity {
                 size = 4;
             }
             if (isGood) {
-                order.add(editText_firstName.getText().toString());
-                order.add(editText_lastName.getText().toString());
-                order.add(editText_address.getText().toString());
-                order.add(editText_phone.getText().toString());
-                order.add(String.valueOf(size));
+                Order order = new Order();
+                order.size = size;
+                int totalToppings = 0;
                 for (CheckBox topping: toppings) {
                     if (topping.isChecked()) {
-                        order.add(topping.getText().toString());
+                        totalToppings += 1;
+                        switch (totalToppings) {
+                            case (1):
+                                order.topping1 = toppings.indexOf(topping) + 1;
+                                break;
+                            case (2):
+                                order.topping2 = toppings.indexOf(topping) + 1;
+                                break;
+                            case (3):
+                                order.topping3 = toppings.indexOf(topping) + 1;
+                                break;
+                        }
+
                     }
                 }
-                table.add(order);
+                order.fName = editText_firstName.getText().toString();
+                order.lName = editText_lastName.getText().toString();
+                order.address = editText_address.getText().toString();
+                order.phone = editText_phone.getText().toString();
+
+                db.open();
+                db.insertOrder(order);
+                db.close();
                 Intent i = new Intent(NewOrder.this, MainActivity.class);
-                i.putExtra("table", table);
                 startActivity(i);
             }
         }
@@ -239,6 +243,6 @@ public class NewOrder extends AppCompatActivity {
         ((EditText) findViewById(R.id.editTextFirstName)).setHint(stringsArray[28]);
         ((EditText) findViewById(R.id.editTextLastName)).setHint(stringsArray[29]);
         ((EditText) findViewById(R.id.editTextAddress)).setHint(stringsArray[30]);
-        ((EditText) findViewById(R.id.editTextPhone)).setHint(stringsArray[21]);
+        ((EditText) findViewById(R.id.editTextPhone)).setHint(stringsArray[31]);
     }
 }
