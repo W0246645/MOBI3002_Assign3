@@ -112,9 +112,60 @@ public class OrderDetails extends AppCompatActivity {
         //Populate the ListView inside this method so I can easily change the language. Somewhat last minute fix.
         ArrayList<String> listData = new ArrayList<>();
 
+        ArrayList<String> toppings = new ArrayList<>();
+        ArrayList<Integer> dbToppings = new ArrayList<>();
+        dbToppings.add(order.topping1);
+        dbToppings.add(order.topping2);
+        dbToppings.add(order.topping3);
+
+        for (int topping : dbToppings) {
+            switch (topping){
+                case (1):
+                    toppings.add(stringsArray[11]);
+                    break;
+                case (2):
+                    toppings.add(stringsArray[12]);
+                    break;
+                case (3):
+                    toppings.add(stringsArray[13]);
+                    break;
+                case (4):
+                    toppings.add(stringsArray[14]);
+                    break;
+                case (5):
+                    toppings.add(stringsArray[15]);
+                    break;
+                case (6):
+                    toppings.add(stringsArray[16]);
+                    break;
+                case (7):
+                    toppings.add(stringsArray[17]);
+                    break;
+                case (8):
+                    toppings.add(stringsArray[18]);
+                    break;
+                case (9):
+                    toppings.add(stringsArray[19]);
+                    break;
+                case (10):
+                    toppings.add(stringsArray[20]);
+                    break;
+                case (11):
+                    toppings.add(stringsArray[21]);
+                    break;
+                case (12):
+                    toppings.add(stringsArray[22]);
+                    break;
+            }
+        }
+
+
         listData.add(stringsArray[42] + ": " + order.id);
         listData.add(stringsArray[5] + ": " + order.size);
-        listData.add(stringsArray[10] + ": " + order.topping1);
+        listData.add(stringsArray[10] + ": ");
+        for (String topping: toppings) {
+            listData.add(" - " + topping);
+        }
         listData.add(stringsArray[25] + ": ");
         listData.add(order.orderDateTime.toString());
         listData.add(stringsArray[43] + ": ");

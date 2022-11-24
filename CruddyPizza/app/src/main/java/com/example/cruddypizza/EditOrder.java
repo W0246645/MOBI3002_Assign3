@@ -205,6 +205,8 @@ public class EditOrder extends AppCompatActivity {
             if (isGood) {
                 order.size = size;
                 order.topping1 = 0;
+                order.topping2 = 0;
+                order.topping3 = 0;
                 int totalToppings = 0;
                 for (CheckBox topping: toppings) {
                     if (topping.isChecked()) {
