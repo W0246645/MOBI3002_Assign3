@@ -92,7 +92,7 @@ public class DBAdapter {
         initialValues.put(KEY_ADDRESS, order.address);
         initialValues.put(KEY_PHONE, order.phone);
 
-        TimeZone tz = TimeZone.getTimeZone("UTC");
+        TimeZone tz = TimeZone.getTimeZone(TimeZone.getDefault().toZoneId());
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
         df.setTimeZone(tz);
 
