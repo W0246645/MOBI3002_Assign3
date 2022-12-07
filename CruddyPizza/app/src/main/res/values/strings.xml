@@ -95,7 +95,7 @@
         <item name="cust_address">Adresse du client</item>
         <item name="cust_phone">Numéro de téléphone du client</item>
     </string-array>
-    <string name="app_name">CruddyPizza</string>
+    <string name="app_name">Cruddy Pizza</string>
     <string name="main_title">Cruddy Pizza\nCurrent Orders</string>
     <string name="new_order">New Order</string>
     <string name="en_switch">EN</string>

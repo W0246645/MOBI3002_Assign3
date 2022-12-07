@@ -161,7 +161,7 @@ public class OrderDetails extends AppCompatActivity {
 
 
         listData.add(stringsArray[42] + ": " + order.id);
-        listData.add(stringsArray[5] + ": " + order.size);
+        listData.add(stringsArray[5] + ": " + stringsArray[order.size + 5]);
         listData.add(stringsArray[10] + ": ");
         for (String topping: toppings) {
             listData.add(" - " + topping);

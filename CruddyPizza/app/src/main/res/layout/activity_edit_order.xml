@@ -76,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
                             android:buttonTint="@color/white"
-                            android:checked="true"
+                            android:checked="false"
                             android:text="@string/size_small"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
